@@ -19,6 +19,13 @@ public class UserController {
         userService.registerUser(user);
     }
 
+    @DeleteMapping("/delete/{username}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteUser(@PathVariable String username){
+        userService.deleteUser(username);
+    }
+
+
     @GetMapping("/test")
     @ResponseStatus(HttpStatus.OK)
     public String testEndpoint() {

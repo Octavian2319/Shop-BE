@@ -16,6 +16,18 @@ public class UserServiceImp implements UserService {
         System.out.println("User registered");
         userRepo.save(user);
     }
+    @Override
+    public void deleteUser(String username){
+        User user = userRepo.findByUsername(username);
+        if(user == null){
+            System.out.println("User not found");
+            throw new RuntimeException("User not found");
+        }
+        else {
+            System.out.println("User deleted");
+            userRepo.delete(user);
+        }
 
+    }
 
 }
