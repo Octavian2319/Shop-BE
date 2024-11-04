@@ -40,6 +40,12 @@ public class UserController {
         return userService.searchUser(username);
     }
 
+    @GetMapping("/user/search/id/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public UserDTO searchUserById(@PathVariable Long id){
+        return userService.searchUserById(id);
+    }
+
     @GetMapping("/test")
     @ResponseStatus(HttpStatus.OK)
     public String testEndpoint() {

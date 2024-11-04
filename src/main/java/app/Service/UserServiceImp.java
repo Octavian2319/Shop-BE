@@ -58,4 +58,21 @@ public class UserServiceImp implements UserService {
         }
     }
 
+    @Override
+    public UserDTO searchUserById(Long id) {
+        User user=userRepo.findById(id).orElse(null);
+        if(user==null){
+            log.info("User not found");
+            throw new RuntimeException("User not found");
+        }
+        else {
+            log.info("User found");
+            UserDTO userDto = new UserDTO();
+            userDto.setUsername(user.getUsername());
+            userDto.setFirstName(user.getFirstName());
+            userDto.setLastName(user.getLastName());
+            return userDto;
+        }
+    }
+
 }
