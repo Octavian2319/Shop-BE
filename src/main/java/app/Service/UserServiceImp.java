@@ -45,11 +45,11 @@ public class UserServiceImp implements UserService {
     public UserDTO searchUser(String username) {
         User user= userRepo.findByUsername(username);
         if(user==null){
-            log.info("User not found");
-            throw new RuntimeException("User not found");
+            log.info("User not found by username");
+            throw new RuntimeException("User not found by username");
         }
         else{
-            log.info("User found");
+            log.info("User found by username");
             UserDTO userDto = new UserDTO();
             userDto.setUsername(user.getUsername());
             userDto.setFirstName(user.getFirstName());
@@ -62,11 +62,11 @@ public class UserServiceImp implements UserService {
     public UserDTO searchUserById(Long id) {
         User user=userRepo.findById(id).orElse(null);
         if(user==null){
-            log.info("User not found");
-            throw new RuntimeException("User not found");
+            log.info("User not found by ID");
+            throw new RuntimeException("User not found by ID");
         }
         else {
-            log.info("User found");
+            log.info("User found by ID");
             UserDTO userDto = new UserDTO();
             userDto.setUsername(user.getUsername());
             userDto.setFirstName(user.getFirstName());

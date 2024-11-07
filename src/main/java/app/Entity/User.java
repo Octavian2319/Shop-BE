@@ -6,8 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-
-import java.util.Date;
+import java.util.List;
 
 
 @Entity
@@ -17,7 +16,7 @@ import java.util.Date;
 @Table(name = "user_table")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @NonNull
     private String username;
@@ -32,5 +31,7 @@ public class User {
     @NonNull
     private String email;
 
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    private List<UserAddress> userAddresses;
 
 }
