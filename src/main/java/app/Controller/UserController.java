@@ -4,11 +4,13 @@ import app.DTO.UserDTO;
 import app.Entity.User;
 import app.Service.UserService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @AllArgsConstructor
 @RestController
 @RequestMapping("/user")
@@ -31,7 +33,7 @@ public class UserController {
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
     public List<User> getAllUsers(){
-       return userService.getAllUsers();
+        return userService.getAllUsers();
     }
 
     @GetMapping("/search/{username}")
@@ -43,6 +45,7 @@ public class UserController {
     @GetMapping("/user/search/id/{id}")
     @ResponseStatus(HttpStatus.OK)
     public UserDTO searchUserById(@PathVariable Long id){
+        log.info("User searched by id");
         return userService.searchUserById(id);
     }
 

@@ -59,8 +59,8 @@ public class UserAddressServiceImp implements UserAddressService {
         User user = userRepo.findByUsername(username);
         UserAddress userAddress = userAddressRepo.findById(id).orElse(null);
         if (user == null || userAddress == null) {
-            log.info("User or address not found for get");
-            throw new RuntimeException("User or address not found for get");
+            log.info("User or address not found from address");
+            throw new RuntimeException("User or address not found from address");
         } else {
             return userAddress;
         }
