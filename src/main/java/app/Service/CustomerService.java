@@ -1,16 +1,16 @@
 package app.Service;
 
 import app.DTO.UserDTO;
-import app.Entity.User;
+import app.Entity.Customer;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public interface UserService {
-    void registerUser(User user);
+public interface CustomerService {
+    void registerUser(Customer customer);
     void deleteUser(String username);
-    List<User> getAllUsers();
+    List<Customer> getAllUsers();
     UserDTO searchUser(String username);
     UserDTO searchUserById(Long id);
 }

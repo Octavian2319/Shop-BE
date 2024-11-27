@@ -1,10 +1,9 @@
 package app.Service;
 
 import app.DTO.UserDTO;
-import app.Entity.User;
-import app.Repository.UserRepo;
+import app.Entity.Customer;
+import app.Repository.CustomerRepository;
 import lombok.AllArgsConstructor;
-import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -13,64 +12,64 @@ import java.util.List;
 @AllArgsConstructor
 @Service
 @Slf4j
-public class UserServiceImp implements UserService {
-    private final UserRepo userRepo;
+public class CustomerServiceImp implements CustomerService {
+    private final CustomerRepository customerRepository;
 
     @Override
-    public void registerUser(User user) {
+    public void registerUser(Customer customer) {
         log.info("User registered");
-        userRepo.save(user);
+        customerRepository.save(customer);
     }
     @Override
     public void deleteUser(String username){
-        User user = userRepo.findByUsername(username);
-        if(user == null){
+        Customer customer = customerRepository.findByUsername(username);
+        if(customer == null){
             log.info("User not found");
             throw new RuntimeException("User not found");
         }
         else {
             log.info("User deleted");
-            userRepo.delete(user);
+            customerRepository.delete(customer);
         }
 
     }
 
     @Override
-    public List<User> getAllUsers() {
+    public List<Customer> getAllUsers() {
         log.info("All users returned");
-        return userRepo.findAll();
+        return customerRepository.findAll();
     }
 
     @Override
     public UserDTO searchUser(String username) {
-        User user= userRepo.findByUsername(username);
-        if(user==null){
+        Customer customer = customerRepository.findByUsername(username);
+        if(customer ==null){
             log.info("User not found by username");
             throw new RuntimeException("User not found by username");
         }
         else{
             log.info("User found by username");
             UserDTO userDto = new UserDTO();
-            userDto.setUsername(user.getUsername());
-            userDto.setFirstName(user.getFirstName());
-            userDto.setLastName(user.getLastName());
+            userDto.setUsername(customer.getUsername());
+            userDto.setFirstName(customer.getFirstName());
+            userDto.setLastName(customer.getLastName());
             return userDto;
         }
     }
 
     @Override
     public UserDTO searchUserById(Long id) {
-        User user=userRepo.findById(id).orElse(null);
-        if(user==null){
+        Customer customer = customerRepository.findById(id).orElse(null);
+        if(customer ==null){
             log.info("User not found by ID");
             throw new RuntimeException("User not found by ID");
         }
         else {
             log.info("User found by ID");
             UserDTO userDto = new UserDTO();
-            userDto.setUsername(user.getUsername());
-            userDto.setFirstName(user.getFirstName());
-            userDto.setLastName(user.getLastName());
+            userDto.setUsername(customer.getUsername());
+            userDto.setFirstName(customer.getFirstName());
+            userDto.setLastName(customer.getLastName());
             return userDto;
         }
     }
