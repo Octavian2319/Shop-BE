@@ -1,7 +1,6 @@
 🛍️ Online Store Database Design
 
 Bine ai venit la designul bazei de date pentru un magazin online - un sistem puternic pentru gestionarea completă a datelor magazinului, împreună cu toate caracteristicile necesare pentru funcționarea unui magazin online!
-![ecommerce-platform-data-1](https://github.com/user-attachments/assets/fde556bd-895d-4bbf-89bd-dfec12f0bbdd)
 
 
 ✨ Caracteristici
@@ -33,3 +32,5 @@ Bine ai venit la designul bazei de date pentru un magazin online - un sistem put
     Configurează aplicația pentru a se conecta la baza de date folosind Spring Boot și MySQL.
 
     Rulează aplicația și verifică conexiunile pentru a te asigura că toate funcționalitățile sunt disponibile.
+
+Baza de date avand urmatorul design: ![ecommerce-platform-data-1](https://github.com/user-attachments/assets/fde556bd-895d-4bbf-89bd-dfec12f0bbdd)
