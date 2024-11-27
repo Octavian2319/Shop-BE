@@ -1,6 +1,5 @@
 package app.Entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,29 +8,28 @@ import lombok.NonNull;
 
 @Data
 @Entity
-@Table(name = "user_address")
+@Table(name = "user_payment")
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserAddress {
+public class CustomerPayment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @NonNull
-    private String address_line1;
-    private String address_line2;
+    private String cardNumber;
     @NonNull
-    private String city;
+    private Integer expiryMonth;
     @NonNull
-    private String state;
+    private Integer expiryYear;
     @NonNull
-    private String country;
+    private Integer cvc;
     @NonNull
-    private int postal_code;
-    @NonNull
-    private int telephone;
+    private String holderName;
+    private boolean defaultPayment=true;
 
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "user_id")
-    private User user;
+    private Customer customer;
+
+
 }
