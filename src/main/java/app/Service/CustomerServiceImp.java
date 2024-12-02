@@ -1,6 +1,6 @@
 package app.Service;
 
-import app.DTO.UserDTO;
+import app.DTO.CustomerDTO;
 import app.Entity.Customer;
 import app.Repository.CustomerRepository;
 import lombok.AllArgsConstructor;
@@ -41,7 +41,7 @@ public class CustomerServiceImp implements CustomerService {
     }
 
     @Override
-    public UserDTO searchUser(String username) {
+    public CustomerDTO searchUser(String username) {
         Customer customer = customerRepository.findByUsername(username);
         if(customer ==null){
             log.info("User not found by username");
@@ -49,16 +49,16 @@ public class CustomerServiceImp implements CustomerService {
         }
         else{
             log.info("User found by username");
-            UserDTO userDto = new UserDTO();
-            userDto.setUsername(customer.getUsername());
-            userDto.setFirstName(customer.getFirstName());
-            userDto.setLastName(customer.getLastName());
-            return userDto;
+            CustomerDTO customerDto = new CustomerDTO();
+            customerDto.setUsername(customer.getUsername());
+            customerDto.setFirstName(customer.getFirstName());
+            customerDto.setLastName(customer.getLastName());
+            return customerDto;
         }
     }
 
     @Override
-    public UserDTO searchUserById(Long id) {
+    public CustomerDTO searchUserById(Long id) {
         Customer customer = customerRepository.findById(id).orElse(null);
         if(customer ==null){
             log.info("User not found by ID");
@@ -66,12 +66,28 @@ public class CustomerServiceImp implements CustomerService {
         }
         else {
             log.info("User found by ID");
-            UserDTO userDto = new UserDTO();
-            userDto.setUsername(customer.getUsername());
-            userDto.setFirstName(customer.getFirstName());
-            userDto.setLastName(customer.getLastName());
-            return userDto;
+            CustomerDTO customerDto = new CustomerDTO();
+            customerDto.setUsername(customer.getUsername());
+            customerDto.setFirstName(customer.getFirstName());
+            customerDto.setLastName(customer.getLastName());
+            return customerDto;
         }
+    }
+
+    @Override
+    public CustomerDTO loginCustomer(String customerName, String password) {
+        //ENCRYPT PAROLA
+        Customer customer;
+        try {
+            customer = customerRepository.findByUsername(customerName);
+        }catch (Exception e){
+            throw new RuntimeException("User not found");
+        }
+        if(customer.getPassword().equals(password))
+            return new CustomerDTO(customer);
+        else
+            return null;
+
     }
 
 }

@@ -7,9 +7,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@AllArgsConstructor
+
 public class CustomerAddressController {
     private final CustomerAddressService customerAddressService;
+
+    public CustomerAddressController(CustomerAddressService customerAddressService) {
+        this.customerAddressService = customerAddressService;
+    }
 
     @PostMapping("/{username}/addAddress")
     @ResponseStatus(HttpStatus.CREATED)

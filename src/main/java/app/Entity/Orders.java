@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 import java.security.Timestamp;
+import java.util.List;
 
 
 @Table(name = "order_details")
@@ -36,7 +37,7 @@ public class Orders {
 
     @OneToMany
     @JoinColumn(name = "order_items_id")
-    private OrderItem orderItem;
+    private List<OrderItem> orderItem;
 
 
 }

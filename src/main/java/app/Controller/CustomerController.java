@@ -1,6 +1,6 @@
 package app.Controller;
 
-import app.DTO.UserDTO;
+import app.DTO.CustomerDTO;
 import app.Entity.Customer;
 import app.Service.CustomerService;
 import lombok.AllArgsConstructor;
@@ -36,22 +36,15 @@ public class CustomerController {
         return customerService.getAllUsers();
     }
 
-    @GetMapping("/search/{username}")
-    @ResponseStatus(HttpStatus.OK)
-    public UserDTO searchUser(@PathVariable String username){
-        return customerService.searchUser(username);
-    }
-
     @GetMapping("/user/search/id/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public UserDTO searchUserById(@PathVariable Long id){
-        log.info("User searched by id");
+    public CustomerDTO searchUserById(@PathVariable Long id){
         return customerService.searchUserById(id);
     }
 
-    @GetMapping("/test")
+    @PostMapping(path = "/login")
     @ResponseStatus(HttpStatus.OK)
-    public String testEndpoint() {
-        return "Test successful!";
+    public CustomerDTO login(@RequestBody String customerName, @RequestBody String password){
+        return customerService.loginCustomer(customerName, password);
     }
 }

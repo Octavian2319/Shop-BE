@@ -19,7 +19,7 @@ public class Cart {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
+    @OneToMany()
     @JoinColumn(name = "cart_items")
     private List<CartItem> cartItemsList;
 
