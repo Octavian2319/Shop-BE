@@ -28,4 +28,8 @@ public class PaymentDetails {
 
     @NonNull
     private String status;
+
+    @ManyToOne
+    @JoinColumn(name = "customer_payment_id")
+    private CustomerPayment customerPayment;
 }
