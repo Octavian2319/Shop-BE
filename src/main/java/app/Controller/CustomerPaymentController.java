@@ -16,7 +16,7 @@ public class CustomerPaymentController {
     private final CustomerPaymentService customerPaymentService;
 
     @PostMapping("/user/{id}/addpayment")
-    public void addPayment(@PathVariable Long id,@RequestBody CustomerPayment customerPayment){
+    public void addPayment(@PathVariable(name = "id") Long id,@RequestBody CustomerPayment customerPayment){
         customerPaymentService.saveCustomerPayment(id,customerPayment);
     }
 
