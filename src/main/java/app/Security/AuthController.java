@@ -3,7 +3,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -18,8 +18,10 @@ import java.util.Map;
 @RequestMapping("/api")
 public class AuthController {
 
-    private final String SECRET_KEY = "secret123"; // Înlocuiește cu o cheie mai puternică
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
+    public AuthController(AuthenticationManager authenticationManager) {
+        this.authenticationManager = authenticationManager;
+    }
 
 
     @PostMapping("/login")
@@ -37,6 +39,8 @@ public class AuthController {
     private String generateToken(Authentication authentication) {
         UserDetails user = (UserDetails) authentication.getPrincipal();
 
+        // Înlocuiește cu o cheie mai puternică
+        String SECRET_KEY = "secret123";
         return Jwts.builder()
                 .setSubject(user.getUsername())
                 .setIssuedAt(new Date())

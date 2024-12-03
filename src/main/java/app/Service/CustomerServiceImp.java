@@ -6,6 +6,7 @@ import app.Repository.CustomerRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -40,22 +41,6 @@ public class CustomerServiceImp implements CustomerService {
         return customerRepository.findAll();
     }
 
-    @Override
-    public CustomerDTO searchUser(String username) {
-        Customer customer = customerRepository.findByUsername(username);
-        if(customer ==null){
-            log.info("User not found by username");
-            throw new RuntimeException("User not found by username");
-        }
-        else{
-            log.info("User found by username");
-            CustomerDTO customerDto = new CustomerDTO();
-            customerDto.setUsername(customer.getUsername());
-            customerDto.setFirstName(customer.getFirstName());
-            customerDto.setLastName(customer.getLastName());
-            return customerDto;
-        }
-    }
 
     @Override
     public CustomerDTO searchUserById(Long id) {

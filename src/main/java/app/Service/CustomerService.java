@@ -8,10 +8,11 @@ import java.util.List;
 
 @Service
 public interface CustomerService {
+
     void registerUser(Customer customer);
+
     void deleteUser(String username);
     List<Customer> getAllUsers();
-    CustomerDTO searchUser(String username);
     CustomerDTO searchUserById(Long id);
 
     CustomerDTO loginCustomer(String customerName, String password);

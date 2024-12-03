@@ -47,7 +47,7 @@ public class CustomerPaymentServiceImp implements CustomerPaymentService {
             throw new RuntimeException("User not found");
         }
         try{
-            customerPayment = customer.getPaymentMethod(nr);
+            customerPayment = customer.getPaymentMethod(nr-1);
         }
         catch (Exception e){
             throw new RuntimeException("Payment method not found");

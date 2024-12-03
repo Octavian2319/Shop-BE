@@ -3,6 +3,7 @@ package app.Entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+
 import java.util.List;
 
 
@@ -24,7 +25,7 @@ public class Customer {
     @NonNull
     private String lastName;
     @NonNull
-    private Integer telephone;
+    private String telephone;
     @NonNull
     private String email;
 
@@ -37,6 +38,18 @@ public class Customer {
     @OneToOne(mappedBy = "customer",cascade = CascadeType.ALL)
     @JoinColumn(name = "cart_id")
     private Cart cart;
+
+    public Customer(@NonNull String username, @NonNull String password, @NonNull String firstName, @NonNull String lastName, @NonNull String phone, @NonNull String email) {
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.telephone = phone;
+        this.email = email;
+        this.customerPayments = null;
+        this.cart = null;
+        this.shippingAddresses = null;
+    }
 
     public CustomerPayment getPaymentMethod(int nr){
         return customerPayments.get(nr);

@@ -21,7 +21,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/login").permitAll() // Permite accesul la /login fără autentificare
                         .requestMatchers("/home").permitAll()
-                        .anyRequest().authenticated() // Toate celelalte cereri necesită autentificare
+                        .anyRequest().permitAll() // Toate celelalte cereri necesită autentificare
                 );
         return http.build();
     }

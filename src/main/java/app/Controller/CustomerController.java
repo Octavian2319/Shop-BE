@@ -13,14 +13,14 @@ import java.util.List;
 @Slf4j
 @AllArgsConstructor
 @RestController
-@RequestMapping("/user")
+@RequestMapping(path = "/customer")
 public class CustomerController {
     private final CustomerService customerService;
 
 
     @PostMapping("/register")
-    @ResponseStatus(HttpStatus.CREATED)
-    public void registerUser(@RequestBody Customer customer){
+//    @ResponseStatus(HttpStatus.CREATED)
+    public void registerUser(@RequestBody Customer customer) {
         customerService.registerUser(customer);
     }
 
