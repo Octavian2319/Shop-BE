@@ -16,14 +16,18 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-                .csrf(AbstractHttpConfigurer::disable) // Dezactivează CSRF pentru API REST
+        http.csrf().disable()
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login").permitAll() // Permite accesul la /login fără autentificare
-                        .requestMatchers("/home").permitAll()
-                        .anyRequest().permitAll() // Toate celelalte cereri necesită autentificare
+                        .requestMatchers("/login").permitAll()
+                        .requestMatchers("/customer/register").permitAll()
+                        .anyRequest().authenticated()
                 );
         return http.build();
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
+        return authConfig.getAuthenticationManager();
     }
 
     @Bean
@@ -31,8 +35,5 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
-        return configuration.getAuthenticationManager();
-    }
+
 }

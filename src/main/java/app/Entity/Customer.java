@@ -28,6 +28,8 @@ public class Customer {
     private String telephone;
     @NonNull
     private String email;
+    @NonNull
+    private String role;
 
     @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
     private List<ShippingAddress> shippingAddresses;

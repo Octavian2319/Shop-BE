@@ -2,6 +2,7 @@ package app.Service;
 
 import app.DTO.CustomerDTO;
 import app.Entity.Customer;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,5 +16,5 @@ public interface CustomerService {
     List<Customer> getAllUsers();
     CustomerDTO searchUserById(Long id);
 
-    CustomerDTO loginCustomer(String customerName, String password);
+//    ResponseEntity<?> loginCustomer(String customerName, String password);
 }

@@ -75,7 +75,7 @@ public class CustomerPaymentServiceImp implements CustomerPaymentService {
 
     @Override
     public void deletePayment(String username, Long id) {
-        Customer customer = customerRepository.findByUsername(username);
+        Customer customer = customerRepository.getCustomersByUsername(username);
         if (customer == null) {
             log.info("User not found");
             throw new RuntimeException("User not found");

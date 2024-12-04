@@ -17,7 +17,7 @@ public class CustomerAddressServiceImp implements CustomerAddressService {
 
     @Override
     public void saveUserAddress(String username, ShippingAddress shippingAddress) {
-        Customer customer = customerRepository.findByUsername(username);
+        Customer customer = customerRepository.getCustomersByUsername(username);
         if (customer == null) {
             log.info("User not found for address");
             throw new RuntimeException("User not found for address");
@@ -30,7 +30,7 @@ public class CustomerAddressServiceImp implements CustomerAddressService {
 
     @Override
     public void updateUserAddress(String username, ShippingAddress shippingAddress) {
-        Customer customer = customerRepository.findByUsername(username);
+        Customer customer = customerRepository.getCustomersByUsername(username);
         if (customer == null) {
             log.info("User not found on update address");
             throw new RuntimeException("User not found on update address");
@@ -43,7 +43,7 @@ public class CustomerAddressServiceImp implements CustomerAddressService {
 
     @Override
     public void deleteUserAddress(String username, Long id) {
-        Customer customer = customerRepository.findByUsername(username);
+        Customer customer = customerRepository.getCustomersByUsername(username);
         ShippingAddress shippingAddress = customerAddressRepository.findById(id).orElse(null);
         if (customer == null || shippingAddress == null) {
             log.info("User or address not found for delete");
@@ -56,7 +56,7 @@ public class CustomerAddressServiceImp implements CustomerAddressService {
 
     @Override
     public ShippingAddress getUserAddress(String username, Long id) {
-        Customer customer = customerRepository.findByUsername(username);
+        Customer customer = customerRepository.getCustomersByUsername(username);
         ShippingAddress shippingAddress = customerAddressRepository.findById(id).orElse(null);
         if (customer == null || shippingAddress == null) {
             log.info("User or address not found from address");

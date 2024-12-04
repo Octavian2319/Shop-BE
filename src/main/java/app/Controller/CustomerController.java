@@ -6,6 +6,7 @@ import app.Service.CustomerService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -42,9 +43,9 @@ public class CustomerController {
         return customerService.searchUserById(id);
     }
 
-    @PostMapping(path = "/login")
-    @ResponseStatus(HttpStatus.OK)
-    public CustomerDTO login(@RequestBody String customerName, @RequestBody String password){
-        return customerService.loginCustomer(customerName, password);
-    }
+//    @PostMapping(path = "/login")
+//    @ResponseStatus(HttpStatus.OK)
+//    public ResponseEntity<?> login(@RequestBody String customerName, @RequestBody String password){
+//        return customerService.loginCustomer(customerName, password);
+//    }
 }
